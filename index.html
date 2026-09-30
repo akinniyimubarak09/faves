@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Bolmery Kitchen — Good Food. Good Mood.</title>
+
+  <meta
+    name="description"
+    content="Bolmery Kitchen — fresh food, bold flavours and unforgettable meals."
+  >
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- LOADER -->
+<div class="loader">
+  <div class="loader-logo">B<span>K</span></div>
+  <div class="loader-line">
+    <i></i>
+  </div>
+</div>
+
+
+<!-- HEADER -->
+<header class="header" id="header">
+
+  <a href="#home" class="brand">
+    <span class="brand-mark">B</span>
+
+    <span>
+      Bolmery <b>Kitchen</b>
+    </span>
+  </a>
+
+  <nav class="nav">
+
+    <a href="#home" class="active">Home</a>
+    <a href="#menu">Menu</a>
+    <a href="#story">Our Story</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#contact">Contact</a>
+
+  </nav>
+
+  <button class="cart-btn" id="openCart">
+    <span>Cart</span>
+    <b id="cartCount">0</b>
+  </button>
+
+  <button class="menu-toggle" id="menuToggle">
+    <span></span>
+    <span></span>
+  </button>
+
+</header>
+
+
+<main>
+
+<!-- HERO -->
+<section class="hero" id="home">
+
+  <div class="hero-bg"></div>
+  <div class="grain"></div>
+
+  <div class="hero-content reveal">
+
+    <p class="eyebrow">
+      <span></span>
+      Freshly made. Beautifully served.
+    </p>
+
+    <h1>
+      Good food.<br>
+      <em>Good mood.</em>
+    </h1>
+
+    <p class="hero-copy">
+      Bold flavours, fresh ingredients and comforting classics —
+      made to turn ordinary moments into memorable ones.
+    </p>
+
+    <div class="hero-actions">
+
+      <a href="#menu" class="btn btn-primary">
+        Explore Menu
+        <span>↗</span>
+      </a>
+
+      <a href="#story" class="text-link">
+        Discover our story
+        <span>→</span>
+      </a>
+
+    </div>
+
+    <div class="hero-meta">
+
+      <div>
+        <strong>4.9</strong>
+
+        <span>
+          ★★★★★
+          <small>2,000+ happy guests</small>
+        </span>
+      </div>
+
+      <i></i>
+
+      <div>
+        <strong>25</strong>
+
+        <span>
+          min
+          <small>Average prep time</small>
+        </span>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="hero-dish reveal delay-2">
+
+    <div class="dish-ring"></div>
+
+    <img
+      src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1000&q=85"
+      alt="Bolmery Kitchen food"
+    >
+
+    <div class="floating-tag tag-one">
+      <span>✦</span>
+      Chef's choice
+    </div>
+
+    <div class="floating-tag tag-two">
+      Made with <b>♥</b>
+    </div>
+
+  </div>
+
+
+  <a class="scroll-cue" href="#menu">
+    <span>Scroll to explore</span>
+    <i></i>
+  </a>
+
+</section>
+
+
+<!-- MARQUEE -->
+<section class="marquee">
+
+  <div>
+
+    <span>FRESH INGREDIENTS</span>
+    <i>✦</i>
+
+    <span>BIG FLAVOUR</span>
+    <i>✦</i>
+
+    <span>MADE WITH LOVE</span>
+    <i>✦</i>
+
+    <span>FRESH INGREDIENTS</span>
+    <i>✦</i>
+
+    <span>BIG FLAVOUR</span>
+    <i>✦</i>
+
+  </div>
+
+</section>
+
+
+<!-- MENU -->
+<section class="section menu-section" id="menu">
+
+  <div class="section-head reveal">
+
+    <div>
+
+      <p class="eyebrow">
+        <span></span>
+        What we're cooking
+      </p>
+
+      <h2>
+        Our <em>favourites</em>
+      </h2>
+
+    </div>
+
+    <p>
+      From comforting classics to irresistible new flavours,
+      there’s something for every craving.
+    </p>
+
+  </div>
+
+
+  <div class="category-tabs reveal">
+
+    <button class="active" data-filter="all">
+      All
+    </button>
+
+    <button data-filter="mains">
+      Mains
+    </button>
+
+    <button data-filter="rice">
+      Rice & Pasta
+    </button>
+
+    <button data-filter="sides">
+      Sides
+    </button>
+
+    <button data-filter="drinks">
+      Drinks
+    </button>
+
+  </div>
+
+
+  <div class="menu-grid" id="menuGrid"></div>
+
+</section>
+
+
+<!-- STORY -->
+<section class="story section" id="story">
+
+  <div class="story-image reveal">
+
+    <img
+      src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=1200&q=85"
+      alt="Chef preparing food"
+    >
+
+    <div class="image-label">
+      <b>2018</b>
+      <span>Where it all began</span>
+    </div>
+
+  </div>
+
+
+  <div class="story-copy reveal delay-1">
+
+    <p class="eyebrow">
+      <span></span>
+      A little about us
+    </p>
+
+    <h2>
+      Food should feel like
+      <em>home.</em>
+    </h2>
+
+    <p>
+      Bolmery Kitchen started with one simple idea:
+      serve food that makes people slow down, smile,
+      and ask for one more bite.
+    </p>
+
+    <p>
+      Today, we blend familiar comfort with a little creativity —
+      using quality ingredients, generous portions and recipes made
+      with heart.
+    </p>
+
+    <a href="#contact" class="btn btn-dark">
+      Come say hello
+      <span>↗</span>
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- FEATURES -->
+<section class="feature-band">
+
+  <div class="feature reveal">
+
+    <span>01</span>
+
+    <div>🥬</div>
+
+    <h3>
+      Fresh ingredients
+    </h3>
+
+    <p>
+      Quality produce, selected for flavour.
+    </p>
+
+  </div>
+
+
+  <div class="feature reveal delay-1">
+
+    <span>02</span>
+
+    <div>👨‍🍳</div>
+
+    <h3>
+      Made to order
+    </h3>
+
+    <p>
+      Prepared fresh when you place your order.
+    </p>
+
+  </div>
+
+
+  <div class="feature reveal delay-2">
+
+    <span>03</span>
+
+    <div>♥</div>
+
+    <h3>
+      Served with love
+    </h3>
+
+    <p>
+      Good food deserves a warm welcome.
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- REVIEWS -->
+<section class="section reviews" id="reviews">
+
+  <div class="section-head centered reveal">
+
+    <p class="eyebrow">
+      <span></span>
+      Guest love
+    </p>
+
+    <h2>
+      Don't just take our
+      <em>word for it.</em>
+    </h2>
+
+  </div>
+
+
+  <div class="review-wrap reveal">
+
+    <button class="review-arrow prev">
+      ←
+    </button>
+
+    <div class="review-card">
+
+      <div class="stars">
+        ★★★★★
+      </div>
+
+      <blockquote id="reviewText">
+        “Every bite tasted fresh and intentional.
+        Bolmery Kitchen has become our go-to spot
+        for a proper comfort meal.”
+      </blockquote>
+
+      <div class="reviewer">
+
+        <div class="avatar">
+          AM
+        </div>
+
+        <div>
+
+          <b id="reviewName">
+            Ada M.
+          </b>
+
+          <small id="reviewDate">
+            Regular guest
+          </small>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <button class="review-arrow next">
+      →
+    </button>
+
+  </div>
+
+
+  <div class="dots">
+
+    <i class="active"></i>
+    <i></i>
+    <i></i>
+
+  </div>
+
+</section>
+
+
+<!-- CTA -->
+<section class="cta" id="contact">
+
+  <div class="cta-inner reveal">
+
+    <p class="eyebrow">
+      <span></span>
+      Your table is waiting
+    </p>
+
+    <h2>
+      Hungry yet?
+    </h2>
+
+    <p>
+      Order your favourites now or come in
+      and let us cook for you.
+    </p>
+
+    <div class="cta-actions">
+
+      <button class="btn btn-primary" id="ctaOrder">
+        Order now
+        <span>↗</span>
+      </button>
+
+      <a class="btn btn-outline" href="tel:+2347053979600">
+        Call us
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+
+  <div class="footer-main">
+
+    <div>
+
+      <a href="#home" class="brand">
+
+        <span class="brand-mark">
+          B
+        </span>
+
+        <span>
+          Bolmery <b>Kitchen</b>
+        </span>
+
+      </a>
+
+      <p>
+        Good food. Good mood. Great memories.
+      </p>
+
+    </div>
+
+
+    <div class="footer-links">
+
+      <div>
+
+        <b>Explore</b>
+
+        <a href="#menu">
+          Menu
+        </a>
+
+        <a href="#story">
+          Our Story
+        </a>
+
+        <a href="#reviews">
+          Reviews
+        </a>
+
+      </div>
+
+
+      <div>
+
+        <b>Visit</b>
+
+        <span>
+          Mon–Sun · 10:00–22:00
+        </span>
+
+        <span>
+          Lagos, Nigeria
+        </span>
+
+      </div>
+
+
+      <div>
+
+        <b>Follow</b>
+
+        <a href="#">
+          Instagram
+        </a>
+
+        <a href="#">
+          Facebook
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="footer-bottom">
+
+    <span>
+      © 2026 Bolmery Kitchen.
+      All rights reserved.
+    </span>
+
+    <span>
+      Made for food lovers.
+    </span>
+
+  </div>
+
+</footer>
+
+
+<!-- OVERLAY -->
+<div class="overlay" id="overlay"></div>
+
+
+<!-- CART -->
+<aside class="cart-drawer" id="cartDrawer">
+
+  <div class="drawer-head">
+
+    <div>
+
+      <p class="eyebrow">
+        Your order
+      </p>
+
+      <h3>
+        Shopping bag
+      </h3>
+
+    </div>
+
+    <button id="closeCart">
+      ×
+    </button>
+
+  </div>
+
+
+  <div class="cart-items" id="cartItems">
+
+    <div class="empty-cart">
+
+      <span>
+        🍽️
+      </span>
+
+      <h4>
+        Your bag is empty
+      </h4>
+
+      <p>
+        Add something delicious from our menu.
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <div class="cart-footer">
+
+    <div class="total">
+
+      <span>
+        Subtotal
+      </span>
+
+      <b id="cartTotal">
+        ₦0
+      </b>
+
+    </div>
+
+    <p class="small-note">
+      Delivery fee is calculated at checkout.
+    </p>
+
+    <button class="checkout-btn" id="checkoutBtn">
+      Continue to checkout
+      <span>→</span>
+    </button>
+
+  </div>
+
+</aside>
+
+
+<!-- CHECKOUT -->
+<div class="modal" id="checkoutModal">
+
+  <div class="modal-box">
+
+    <button class="modal-close" id="closeCheckout">
+      ×
+    </button>
+
+    <p class="eyebrow">
+      Almost there
+    </p>
+
+    <h3>
+      Complete your order
+    </h3>
+
+    <p class="modal-sub">
+      Enter your details and we’ll prepare your order.
+    </p>
+
+
+    <form id="checkoutForm">
+
+      <label>
+        Name
+
+        <input
+          required
+          name="name"
+          placeholder="Your name"
+        >
+
+      </label>
+
+
+      <label>
+        Phone
+
+        <input
+          required
+          name="phone"
+          type="tel"
+          placeholder="080..."
+        >
+
+      </label>
+
+
+      <label>
+        Delivery address
+
+        <textarea
+          required
+          name="address"
+          rows="3"
+          placeholder="Where should we deliver?"
+        ></textarea>
+
+      </label>
+
+
+      <label>
+        Order note
+        <span>(optional)</span>
+
+        <textarea
+          name="note"
+          rows="2"
+          placeholder="Extra pepper, no onions..."
+        ></textarea>
+
+      </label>
+
+
+      <button
+        class="checkout-btn"
+        type="submit"
+      >
+        Place order via WhatsApp
+        <span>↗</span>
+      </button>
+
+    </form>
+
+  </div>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
