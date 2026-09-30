@@ -1,191 +1,385 @@
-const menuData = [
+/* =========================
+   BOLMERY KITCHEN
+   MAIN JAVASCRIPT
+========================= */
+
+
+/* =========================
+   RESTAURANT SETTINGS
+========================= */
+
+// Replace this with your actual WhatsApp number.
+// Use international format without the + sign.
+const restaurantNumber = "2347053979600";
+
+
+/* =========================
+   MENU DATA
+========================= */
+
+const menuItems = [
 
   {
     id: 1,
     name: "Jollof & Grilled Chicken",
-    cat: "rice",
+    description: "Smoky Nigerian jollof rice with juicy grilled chicken.",
     price: 6500,
-    img: "https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=700&q=85",
-    desc: "Smoky party jollof, grilled chicken & house slaw",
-    badge: "Popular"
+    category: "rice",
+    image: "https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=700&q=85"
   },
 
   {
     id: 2,
     name: "Creamy Chicken Pasta",
-    cat: "mains",
+    description: "Creamy pasta tossed with tender chicken and herbs.",
     price: 7200,
-    img: "https://images.unsplash.com/photo-1555949258-eb67b1ef0ceb?auto=format&fit=crop&w=700&q=85",
-    desc: "Silky cream sauce, herbs, chicken & parmesan",
-    badge: "Chef's pick"
+    category: "mains",
+    image: "https://images.unsplash.com/photo-1555949258-eb67b1ef0ceb?auto=format&fit=crop&w=700&q=85"
   },
 
   {
     id: 3,
     name: "Crispy Chicken Burger",
-    cat: "mains",
+    description: "Crispy chicken, fresh vegetables and signature sauce.",
     price: 5800,
-    img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=700&q=85",
-    desc: "Crispy chicken, brioche, fresh slaw & signature sauce",
-    badge: ""
+    category: "mains",
+    image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=700&q=85"
   },
 
   {
     id: 4,
     name: "Loaded Beef Fries",
-    cat: "sides",
+    description: "Crispy fries loaded with seasoned beef and sauce.",
     price: 5000,
-    img: "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=700&q=85",
-    desc: "Crispy fries, seasoned beef, cheese & house sauce",
-    badge: ""
+    category: "sides",
+    image: "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=700&q=85"
   },
 
   {
     id: 5,
     name: "Pepper Soup",
-    cat: "mains",
+    description: "Hot and spicy Nigerian pepper soup.",
     price: 4500,
-    img: "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=700&q=85",
-    desc: "Aromatic, spicy and deeply comforting house pepper soup",
-    badge: "Hot"
+    category: "mains",
+    image: "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=700&q=85"
   },
 
   {
     id: 6,
     name: "Prawn Fried Rice",
-    cat: "rice",
+    description: "Fragrant fried rice loaded with juicy prawns.",
     price: 7500,
-    img: "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=700&q=85",
-    desc: "Wok-tossed rice, prawns, vegetables & smoky seasoning",
-    badge: ""
+    category: "rice",
+    image: "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=700&q=85"
   },
 
   {
     id: 7,
     name: "Plantain & Suya",
-    cat: "sides",
+    description: "Sweet fried plantain served with spicy suya.",
     price: 4200,
-    img: "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=700&q=85",
-    desc: "Sweet ripe plantain with spicy grilled suya",
-    badge: ""
+    category: "sides",
+    image: "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=700&q=85"
   },
 
   {
     id: 8,
     name: "Fresh Zobo Cooler",
-    cat: "drinks",
+    description: "Refreshing Nigerian hibiscus drink.",
     price: 1800,
-    img: "https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=700&q=85",
-    desc: "Chilled hibiscus, ginger, pineapple & citrus",
-    badge: "Fresh"
+    category: "drinks",
+    image: "https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=700&q=85"
   }
 
 ];
 
 
-let cart =
-  JSON.parse(
-    localStorage.getItem("bolmeryCart")
-  ) || [];
+/* =========================
+   CART
+========================= */
+
+let cart = JSON.parse(localStorage.getItem("bolmeryCart")) || [];
 
 
-function naira(amount) {
+/* =========================
+   ELEMENTS
+========================= */
 
-  return new Intl.NumberFormat(
-    "en-NG",
-    {
-      style: "currency",
-      currency: "NGN",
-      maximumFractionDigits: 0
-    }
-  ).format(amount);
+const menuGrid = document.getElementById("menuGrid");
 
+const cartBtn = document.getElementById("cartBtn");
+const cartDrawer = document.getElementById("cartDrawer");
+const closeCart = document.getElementById("closeCart");
+
+const overlay = document.getElementById("overlay");
+
+const cartItems = document.getElementById("cartItems");
+const cartCount = document.getElementById("cartCount");
+const cartTotal = document.getElementById("cartTotal");
+
+const checkoutBtn = document.getElementById("checkoutBtn");
+
+const checkoutModal = document.getElementById("checkoutModal");
+const closeCheckout = document.getElementById("closeCheckout");
+
+const checkoutForm = document.getElementById("checkoutForm");
+
+const menuBtn = document.getElementById("menuBtn");
+const mobileNav = document.getElementById("mobileNav");
+
+
+/* =========================
+   FORMAT PRICE
+========================= */
+
+function formatPrice(price) {
+  return "₦" + price.toLocaleString("en-NG");
 }
 
 
-/* RENDER MENU */
+/* =========================
+   DISPLAY MENU
+========================= */
 
-function renderMenu(filter = "all") {
+function displayMenu(category = "all") {
 
-  const grid =
-    document.getElementById("menuGrid");
+  const filteredItems =
+    category === "all"
+      ? menuItems
+      : menuItems.filter(item => item.category === category);
 
-  const products =
-    menuData.filter(
-      item =>
-        filter === "all" ||
-        item.cat === filter
-    );
+  menuGrid.innerHTML = "";
 
+  filteredItems.forEach(item => {
 
-  grid.innerHTML =
-    products.map(
-      (item, index) => `
+    const card = document.createElement("article");
 
-      <article
-        class="food-card"
-        style="animation-delay:${index * .06}s"
-      >
+    card.className = "menu-card";
 
-        <div class="food-img">
+    card.innerHTML = `
 
-          <img
-            loading="lazy"
-            src="${item.img}"
-            alt="${item.name}"
-          >
+      <div class="menu-img">
 
-          ${
-            item.badge
-              ? `<span class="food-badge">
-                  ${item.badge}
-                </span>`
-              : ""
-          }
+        <img
+          src="${item.image}"
+          alt="${item.name}"
+          loading="lazy"
+        >
+
+        <span class="menu-category">
+          ${item.category}
+        </span>
+
+      </div>
+
+      <div class="menu-info">
+
+        <h3>${item.name}</h3>
+
+        <p>
+          ${item.description}
+        </p>
+
+        <div class="menu-bottom">
+
+          <span class="menu-price">
+            ${formatPrice(item.price)}
+          </span>
 
           <button
-            class="add-food"
-            data-add="${item.id}"
+            class="add-btn"
+            onclick="addToCart(${item.id})"
+            aria-label="Add ${item.name} to cart"
           >
             +
           </button>
 
         </div>
 
+      </div>
 
-        <div class="food-info">
+    `;
 
-          <h3>
-            ${item.name}
-          </h3>
+    menuGrid.appendChild(card);
 
-          <p>
-            ${item.desc}
-          </p>
-
-          <div class="food-bottom">
-
-            <b>
-              ${naira(item.price)}
-            </b>
-
-            <span>
-              Made fresh
-            </span>
-
-          </div>
-
-        </div>
-
-      </article>
-
-    `
-    ).join("");
+  });
 
 }
 
 
-/* SAVE CART */
+/* =========================
+   ADD TO CART
+========================= */
+
+function addToCart(id) {
+
+  const item = menuItems.find(product => product.id === id);
+
+  if (!item) return;
+
+  const existing = cart.find(product => product.id === id);
+
+  if (existing) {
+    existing.quantity++;
+  } else {
+    cart.push({
+      ...item,
+      quantity: 1
+    });
+  }
+
+  saveCart();
+  updateCart();
+
+  openCart();
+
+}
+
+
+/* =========================
+   REMOVE FROM CART
+========================= */
+
+function removeFromCart(id) {
+
+  cart = cart.filter(item => item.id !== id);
+
+  saveCart();
+  updateCart();
+
+}
+
+
+/* =========================
+   CHANGE QUANTITY
+========================= */
+
+function changeQuantity(id, amount) {
+
+  const item = cart.find(product => product.id === id);
+
+  if (!item) return;
+
+  item.quantity += amount;
+
+  if (item.quantity <= 0) {
+    removeFromCart(id);
+    return;
+  }
+
+  saveCart();
+  updateCart();
+
+}
+
+
+/* =========================
+   UPDATE CART
+========================= */
+
+function updateCart() {
+
+  const totalItems = cart.reduce(
+    (total, item) => total + item.quantity,
+    0
+  );
+
+  const totalPrice = cart.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
+
+
+  cartCount.textContent = totalItems;
+
+  cartTotal.textContent = formatPrice(totalPrice);
+
+
+  if (cart.length === 0) {
+
+    cartItems.innerHTML = `
+
+      <div class="empty-cart">
+
+        <div>🛒</div>
+
+        <h3>Your cart is empty</h3>
+
+        <p>
+          Add something delicious from our menu.
+        </p>
+
+      </div>
+
+    `;
+
+    return;
+  }
+
+
+  cartItems.innerHTML = "";
+
+
+  cart.forEach(item => {
+
+    const element = document.createElement("div");
+
+    element.className = "cart-item";
+
+    element.innerHTML = `
+
+      <img
+        src="${item.image}"
+        alt="${item.name}"
+      >
+
+      <div class="cart-item-info">
+
+        <h4>${item.name}</h4>
+
+        <p>
+          ${formatPrice(item.price * item.quantity)}
+        </p>
+
+        <div class="quantity">
+
+          <button
+            onclick="changeQuantity(${item.id}, -1)"
+          >
+            −
+          </button>
+
+          <span>${item.quantity}</span>
+
+          <button
+            onclick="changeQuantity(${item.id}, 1)"
+          >
+            +
+          </button>
+
+        </div>
+
+      </div>
+
+      <button
+        class="remove-item"
+        onclick="removeFromCart(${item.id})"
+      >
+        ×
+      </button>
+
+    `;
+
+    cartItems.appendChild(element);
+
+  });
+
+}
+
+
+/* =========================
+   LOCAL STORAGE
+========================= */
 
 function saveCart() {
 
@@ -197,700 +391,284 @@ function saveCart() {
 }
 
 
-/* RENDER CART */
+/* =========================
+   OPEN CART
+========================= */
 
-function renderCart() {
+function openCart() {
 
-  const box =
-    document.getElementById("cartItems");
+  cartDrawer.classList.add("open");
+  overlay.classList.add("show");
+
+  document.body.style.overflow = "hidden";
+
+}
 
 
-  const count =
-    cart.reduce(
-      (total, item) =>
-        total + item.qty,
-      0
+/* =========================
+   CLOSE CART
+========================= */
+
+function closeCartDrawer() {
+
+  cartDrawer.classList.remove("open");
+  overlay.classList.remove("show");
+
+  document.body.style.overflow = "";
+
+}
+
+
+/* =========================
+   CART EVENTS
+========================= */
+
+cartBtn.addEventListener(
+  "click",
+  openCart
+);
+
+closeCart.addEventListener(
+  "click",
+  closeCartDrawer
+);
+
+overlay.addEventListener(
+  "click",
+  closeCartDrawer
+);
+
+
+/* =========================
+   MENU FILTERS
+========================= */
+
+document.querySelectorAll(".filter").forEach(button => {
+
+  button.addEventListener("click", () => {
+
+    document
+      .querySelectorAll(".filter")
+      .forEach(btn => btn.classList.remove("active"));
+
+    button.classList.add("active");
+
+    displayMenu(
+      button.dataset.category
     );
 
+  });
 
-  const total =
-    cart.reduce(
-      (sum, item) =>
-        sum + item.price * item.qty,
-      0
-    );
+});
 
 
-  document.getElementById(
-    "cartCount"
-  ).textContent = count;
+/* =========================
+   CHECKOUT
+========================= */
 
+checkoutBtn.addEventListener("click", () => {
 
-  document.getElementById(
-    "cartTotal"
-  ).textContent = naira(total);
+  if (cart.length === 0) {
 
-
-  if (!cart.length) {
-
-    box.innerHTML = `
-
-      <div class="empty-cart">
-
-        <span>🍽️</span>
-
-        <h4>
-          Your bag is empty
-        </h4>
-
-        <p>
-          Add something delicious
-          from our menu.
-        </p>
-
-      </div>
-
-    `;
+    alert("Your cart is empty. Add a meal first.");
 
     return;
   }
 
+  checkoutModal.classList.add("show");
 
-  box.innerHTML =
-    cart.map(
-      item => `
-
-      <div class="cart-row">
-
-        <img
-          src="${item.img}"
-          alt="${item.name}"
-        >
-
-        <div>
-
-          <h4>
-            ${item.name}
-          </h4>
-
-          <p>
-            ${naira(item.price)}
-          </p>
+});
 
 
-          <div class="qty">
+closeCheckout.addEventListener("click", () => {
 
-            <button
-              data-minus="${item.id}"
-            >
-              −
-            </button>
+  checkoutModal.classList.remove("show");
 
-            <span>
-              ${item.qty}
-            </span>
-
-            <button
-              data-plus="${item.id}"
-            >
-              +
-            </button>
-
-          </div>
-
-        </div>
+});
 
 
-        <div class="price">
+checkoutModal.addEventListener("click", event => {
 
-          ${naira(
-            item.price * item.qty
-          )}
+  if (event.target === checkoutModal) {
 
-        </div>
+    checkoutModal.classList.remove("show");
 
-      </div>
+  }
 
-    `
-    ).join("");
-
-}
+});
 
 
-/* ADD PRODUCT */
+/* =========================
+   WHATSAPP ORDER
+========================= */
 
-function addToCart(id) {
+checkoutForm.addEventListener("submit", event => {
 
-  const item =
-    menuData.find(
-      product => product.id === id
-    );
-
-
-  const existing =
-    cart.find(
-      product => product.id === id
-    );
+  event.preventDefault();
 
 
-  if (existing) {
+  const name =
+    document.getElementById("customerName").value.trim();
 
-    existing.qty++;
+  const phone =
+    document.getElementById("customerPhone").value.trim();
+
+  const address =
+    document.getElementById("customerAddress").value.trim();
+
+  const note =
+    document.getElementById("customerNote").value.trim();
+
+
+  let message = `🍽️ *NEW ORDER - BOLMERY KITCHEN*%0A%0A`;
+
+  message += `👤 *Name:* ${name}%0A`;
+  message += `📞 *Phone:* ${phone}%0A`;
+  message += `📍 *Address:* ${address}%0A%0A`;
+
+  message += `🛒 *ORDER:*%0A`;
+
+
+  cart.forEach(item => {
+
+    message +=
+      `• ${item.name} × ${item.quantity} — ${formatPrice(item.price * item.quantity)}%0A`;
+
+  });
+
+
+  const total = cart.reduce(
+    (sum, item) =>
+      sum + item.price * item.quantity,
+    0
+  );
+
+
+  message += `%0A💰 *TOTAL: ${formatPrice(total)}*%0A`;
+
+
+  if (note) {
+
+    message +=
+      `%0A📝 *Note:* ${note}%0A`;
+
+  }
+
+
+  message += `%0AThank you!`;
+
+
+  const whatsappURL =
+    `https://wa.me/${restaurantNumber}?text=${message}`;
+
+
+  window.open(
+    whatsappURL,
+    "_blank"
+  );
+
+});
+
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+menuBtn.addEventListener("click", () => {
+
+  mobileNav.classList.toggle("show");
+
+});
+
+
+document.querySelectorAll(".mobile-nav a").forEach(link => {
+
+  link.addEventListener("click", () => {
+
+    mobileNav.classList.remove("show");
+
+  });
+
+});
+
+
+/* =========================
+   HEADER SCROLL
+========================= */
+
+window.addEventListener("scroll", () => {
+
+  const header =
+    document.getElementById("header");
+
+  if (window.scrollY > 30) {
+
+    header.classList.add("scrolled");
 
   } else {
 
-    cart.push({
-      ...item,
-      qty: 1
-    });
+    header.classList.remove("scrolled");
 
   }
 
+});
 
-  saveCart();
 
-  renderCart();
-
-  openCart();
-
-}
-
-
-/* CHANGE QUANTITY */
-
-function changeQuantity(id, amount) {
-
-  const item =
-    cart.find(
-      product => product.id === id
-    );
-
-
-  if (!item) return;
-
-
-  item.qty += amount;
-
-
-  if (item.qty <= 0) {
-
-    cart =
-      cart.filter(
-        product => product.id !== id
-      );
-
-  }
-
-
-  saveCart();
-
-  renderCart();
-
-}
-
-
-/* CART OPEN */
-
-function openCart() {
-
-  document
-    .getElementById("cartDrawer")
-    .classList.add("open");
-
-
-  document
-    .getElementById("overlay")
-    .classList.add("show");
-
-
-  document.body
-    .classList.add("no-scroll");
-
-}
-
-
-/* CART CLOSE */
-
-function closeCart() {
-
-  document
-    .getElementById("cartDrawer")
-    .classList.remove("open");
-
-
-  document
-    .getElementById("overlay")
-    .classList.remove("show");
-
-
-  document.body
-    .classList.remove("no-scroll");
-
-}
-
-
-/* CLICK EVENTS */
-
-document.addEventListener(
-  "click",
-  event => {
-
-    if (
-      event.target.matches(
-        "[data-add]"
-      )
-    ) {
-
-      addToCart(
-        Number(
-          event.target.dataset.add
-        )
-      );
-
-    }
-
-
-    if (
-      event.target.matches(
-        "[data-plus]"
-      )
-    ) {
-
-      changeQuantity(
-        Number(
-          event.target.dataset.plus
-        ),
-        1
-      );
-
-    }
-
-
-    if (
-      event.target.matches(
-        "[data-minus]"
-      )
-    ) {
-
-      changeQuantity(
-        Number(
-          event.target.dataset.minus
-        ),
-        -1
-      );
-
-    }
-
-  }
-);
-
-
-/* MENU FILTER */
-
-document
-  .querySelectorAll(
-    ".category-tabs button"
-  )
-  .forEach(button => {
-
-    button.addEventListener(
-      "click",
-      () => {
-
-        document
-          .querySelector(
-            ".category-tabs .active"
-          )
-          .classList
-          .remove("active");
-
-
-        button.classList.add(
-          "active"
-        );
-
-
-        renderMenu(
-          button.dataset.filter
-        );
-
-      }
-    );
-
-  });
-
-
-/* CART BUTTONS */
-
-document
-  .getElementById("openCart")
-  .onclick = openCart;
-
-
-document
-  .getElementById("closeCart")
-  .onclick = closeCart;
-
-
-document
-  .getElementById("overlay")
-  .onclick = closeCart;
-
-
-/* MOBILE MENU */
-
-document
-  .getElementById("menuToggle")
-  .onclick = () => {
-
-    document
-      .querySelector(".nav")
-      .classList.toggle("open");
-
-  };
-
-
-document
-  .querySelectorAll(".nav a")
-  .forEach(link => {
-
-    link.onclick = () => {
-
-      document
-        .querySelector(".nav")
-        .classList.remove("open");
-
-    };
-
-  });
-
-
-/* CTA */
-
-document
-  .getElementById("ctaOrder")
-  .onclick = () => {
-
-    document
-      .getElementById("menu")
-      .scrollIntoView({
-        behavior: "smooth"
-      });
-
-  };
-
-
-/* CHECKOUT */
-
-const modal =
-  document.getElementById(
-    "checkoutModal"
-  );
-
-
-document
-  .getElementById("checkoutBtn")
-  .onclick = () => {
-
-    if (!cart.length) {
-
-      alert(
-        "Your cart is empty."
-      );
-
-      return;
-    }
-
-
-    closeCart();
-
-    modal.classList.add("open");
-
-  };
-
-
-document
-  .getElementById("closeCheckout")
-  .onclick = () => {
-
-    modal.classList.remove(
-      "open"
-    );
-
-  };
-
-
-modal.addEventListener(
-  "click",
-  event => {
-
-    if (
-      event.target === modal
-    ) {
-
-      modal.classList.remove(
-        "open"
-      );
-
-    }
-
-  }
-);
-
-
-/* WHATSAPP ORDER */
-
-document
-  .getElementById("checkoutForm")
-  .addEventListener(
-    "submit",
-    event => {
-
-      event.preventDefault();
-
-
-      const formData =
-        new FormData(
-          event.target
-        );
-
-
-      const items =
-        cart.map(
-          item =>
-            `• ${item.name} x${item.qty} — ${naira(
-              item.price * item.qty
-            )}`
-        ).join("\n");
-
-
-      const total =
-        cart.reduce(
-          (sum, item) =>
-            sum +
-            item.price *
-            item.qty,
-          0
-        );
-
-
-      const message =
-
-`Hello Bolmery Kitchen! 👋
-
-I'd like to place an order:
-
-${items}
-
-Subtotal:
-${naira(total)}
-
-Name:
-${formData.get("name")}
-
-Phone:
-${formData.get("phone")}
-
-Address:
-${formData.get("address")}
-
-Note:
-${formData.get("note") || "None"}`;
-
-
-      /*
-        CHANGE THIS NUMBER
-        TO YOUR REAL WHATSAPP NUMBER.
-
-        Example:
-        2348063682721
-      */
-
-      const restaurantNumber =
-        "2347053979600";
-
-
-      const whatsappURL =
-        "https://wa.me/2347053979600" +
-        2347053979600 +
-        "?text=" +
-        encodeURIComponent(
-          message
-        );
-
-
-      window.open(
-        whatsappURL,
-        "_blank"
-      );
-
-    }
-  );
-
-
-/* REVIEWS */
-
-const reviews = [
-
-  [
-    "“Every bite tasted fresh and intentional. Bolmery Kitchen has become our go-to spot for a proper comfort meal.”",
-    "Ada M.",
-    "Regular guest"
-  ],
-
-  [
-    "“The jollof is seriously addictive. Great portions, beautiful presentation and the service feels genuinely warm.”",
-    "Daniel O.",
-    "Food lover"
-  ],
-
-  [
-    "“We ordered for the whole family and everyone found something they loved. We’ll definitely be back.”",
-    "Maya K.",
-    "Happy guest"
-  ]
-
-];
-
-
-let reviewIndex = 0;
-
-
-function showReview(index) {
-
-  reviewIndex =
-    (index + reviews.length) %
-    reviews.length;
-
-
-  document.getElementById(
-    "reviewText"
-  ).textContent =
-    reviews[reviewIndex][0];
-
-
-  document.getElementById(
-    "reviewName"
-  ).textContent =
-    reviews[reviewIndex][1];
-
-
-  document.getElementById(
-    "reviewDate"
-  ).textContent =
-    reviews[reviewIndex][2];
-
-
-  document
-    .querySelectorAll(".dots i")
-    .forEach(
-      (dot, index) => {
-
-        dot.classList.toggle(
-          "active",
-          index === reviewIndex
-        );
-
-      }
-    );
-
-}
-
-
-document
-  .querySelector(".review-arrow.prev")
-  .onclick = () =>
-    showReview(
-      reviewIndex - 1
-    );
-
-
-document
-  .querySelector(".review-arrow.next")
-  .onclick = () =>
-    showReview(
-      reviewIndex + 1
-    );
-
-
-/* SCROLL REVEAL */
+/* =========================
+   SCROLL REVEAL
+========================= */
 
 const observer =
   new IntersectionObserver(
     entries => {
 
-      entries.forEach(
-        entry => {
+      entries.forEach(entry => {
 
-          if (
-            entry.isIntersecting
-          ) {
+        if (entry.isIntersecting) {
 
-            entry.target
-              .classList
-              .add("visible");
-
-          }
+          entry.target.classList.add("visible");
 
         }
-      );
+
+      });
 
     },
     {
-      threshold: .12
+      threshold: 0.12
     }
   );
 
 
 document
   .querySelectorAll(".reveal")
-  .forEach(
-    element =>
-      observer.observe(element)
-  );
+  .forEach(element => {
+
+    observer.observe(element);
+
+  });
 
 
-/* HEADER SCROLL */
+/* =========================
+   LOADER
+========================= */
 
-window.addEventListener(
-  "scroll",
-  () => {
+window.addEventListener("load", () => {
+
+  setTimeout(() => {
 
     document
-      .getElementById("header")
-      .classList.toggle(
-        "scrolled",
-        window.scrollY > 30
-      );
+      .getElementById("loader")
+      .classList.add("hide");
 
-  }
-);
+  }, 700);
+
+});
 
 
-/* LOADER */
+/* =========================
+   INITIALIZE
+========================= */
 
-window.addEventListener(
-  "load",
-  () => {
+displayMenu();
 
-    setTimeout(
-      () => {
-
-        document
-          .querySelector(".loader")
-          .classList
-          .add("done");
-
-      },
-      700
-    );
-
-  }
-);
-
-
-/* INITIALIZE */
-
-renderMenu();
-
-renderCart();
+updateCart();
